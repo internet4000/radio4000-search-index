@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "algoliasearch": "^3.24.12",
+    "dotenv": "^5.0.1",
+    "firebase": "^4.10.1",
+    "ora": "^2.0.0",
+    "radio4000-sdk": "^0.0.4"
+  }
+}
