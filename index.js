@@ -9,6 +9,8 @@
     ALGOLIA_INDEX_NAME=rad…
     FIREBASE_DATABASE_URL=https://[your project].firebaseio.com
 
+  Find the API keys when you sign in to Algolia.
+
   Fetch all channels from Radio4000,
   serialize the data for Algolia
   create the "search index" for Algolia and save it.
@@ -27,15 +29,13 @@ let state = {
   total: 0
 }
 
-const spinner = ora('0%').start()
+const spinner = ora(`Preparing search index 0%`).start()
 
 // Load values from the .env file in this directory into process.env
 dotenv.load()
 
 // Configure Firebase
-firebase.initializeApp({
-  databaseURL: process.env.FIREBASE_DATABASE_URL
-})
+firebase.initializeApp({databaseURL: process.env.FIREBASE_DATABASE_URL})
 const database = firebase.database()
 
 // Configure Algolia
@@ -103,11 +103,12 @@ const start = async () => {
   // Send the records to Algolia
   try {
     await index.saveObjects(records)
-    // console.log('Channels imported into Algolia')
-    spinner.succeed('Channels imported into Algolia')
+    spinner.succeed(
+      `${records.length} channels succesfully imported into Algolia`
+    )
     process.exit(0)
   } catch (err) {
-    spinner.fail('Error when importing channel into Algolia')
+    spinner.fail(`Error when importing channel into Algolia ${err}`)
     process.exit(1)
   }
 }
