@@ -1,4 +1,5 @@
 <p>This is a test of an search autoomplete with Algolia. When you select something it'll be logged to the console.</p>
+
 <div class="aa-input-container" id="aa-input-container">
 	<input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for Radio4000 channels…" name="search" autocomplete="off" />
 	<svg class="aa-input-icon" viewBox="654 -372 1664 1664">
@@ -70,8 +71,13 @@
 			source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
 			displayKey: "title",
 			templates: {
+				// Use this to modify the HTML template for each suggestion.
 				suggestion: function(suggestion) {
-					return suggestion.title;
+					console.log(suggestion)
+					return `
+						<img src="${suggestion.img}" alt="">
+						<span>${suggestion.title}</span>
+					`;
 				}
 			}
 		}

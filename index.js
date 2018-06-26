@@ -1,23 +1,3 @@
-/**
-  This is a node script that creates a search index
-  for Algolia from Radio4000 channels.
-
-  It requires an `.env` file with the following:
-
-    ALGOLIA_APP_ID=7FF…
-    ALGOLIA_API_KEY=a87…
-    ALGOLIA_INDEX_NAME=rad…
-    FIREBASE_DATABASE_URL=https://[your project].firebaseio.com
-
-  Find the API keys when you sign in to Algolia.
-
-  Fetch all channels from Radio4000,
-  serialize the data for Algolia
-  create the "search index" for Algolia and save it.
-
-  https://www.algolia.com/doc/tutorials/indexing/3rd-party-service/firebase-algolia/
- */
-
 const algoliasearch = require('algoliasearch')
 const dotenv = require('dotenv')
 const firebase = require('firebase')
@@ -31,11 +11,13 @@ let state = {
 
 const spinner = ora(`Preparing search index 0%`).start()
 
-// Load values from the .env file in this directory into process.env
+// Load values from a `.env` file into process.env
 dotenv.load()
 
 // Configure Firebase
-firebase.initializeApp({databaseURL: process.env.FIREBASE_DATABASE_URL})
+firebase.initializeApp({
+	databaseURL: process.env.FIREBASE_DATABASE_URL
+})
 const database = firebase.database()
 
 // Configure Algolia
@@ -45,10 +27,8 @@ const algolia = algoliasearch(
 )
 const index = algolia.initIndex(process.env.ALGOLIA_INDEX_NAME)
 
-/**
- * UTILTIES
- */
-
+// Transforms a Firebase snapshot into an array
+// where each item is given the key as "id".
 function snapshotToArray(snapshot) {
   var returnArr = []
   snapshot.forEach(child => {
@@ -61,7 +41,7 @@ function snapshotToArray(snapshot) {
 
 const serialize = async item => {
   // Set an "img" property on all channels for Algolia.
-  // Because images are stored in another model we have to fetch the image for each channel.
+  // Note: images are stored in another model so we have to fetch it for each channel.
   try {
     const img = await findChannelImage(item)
     item.img = img.url
@@ -84,7 +64,7 @@ const serialize = async item => {
 
   state.progress++
   spinner.text = `Preparing search index ${Math.floor(
-    state.progress / state.total * 100
+    (state.progress / state.total) * 100
   )}%`
 
   return item
