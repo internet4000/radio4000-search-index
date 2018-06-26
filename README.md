@@ -15,7 +15,8 @@ The basic idea is this:
 2. Modify data for Algolia
 3. Create and upload the search index to Algolia 
 
-`index.html` contains an example of a search input.
+Run it with `node index.js`.  
+Open `index.html` for an example of a search input.
 
 Also see
 
