@@ -2,7 +2,6 @@ const algoliasearch = require('algoliasearch')
 const dotenv = require('dotenv')
 const firebase = require('firebase')
 const ora = require('ora')
-const {findChannelImage} = require('radio4000-sdk')
 
 let state = {
   progress: 0,
@@ -40,13 +39,6 @@ function snapshotToArray(snapshot) {
 }
 
 const serialize = async item => {
-  // Set an "img" property on all channels for Algolia.
-  // Note: images are stored in another model so we have to fetch it for each channel.
-  try {
-    const img = await findChannelImage(item)
-    item.img = img.url
-  } catch (err) {}
-
   // Algolia requires an "objectID" property
   item.objectID = item.id
 

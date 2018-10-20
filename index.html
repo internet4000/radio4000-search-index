@@ -72,12 +72,12 @@
 			displayKey: "title",
 			templates: {
 				// Use this to modify the HTML template for each suggestion.
-				suggestion: function(suggestion) {
+				suggestion(suggestion) {
 					console.log(suggestion)
 					return `
-						<img src="${suggestion.img}" alt="">
+						<img width="30" src="https://res.cloudinary.com/radio4000/image/upload/w_250,h_250,c_thumb,q_60/${suggestion.image}" alt="">
 						<span>${suggestion.title}</span>
-					`;
+					`
 				}
 			}
 		}
