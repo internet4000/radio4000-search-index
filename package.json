@@ -1,8 +1,12 @@
 {
+  "main": "update-search-index.js",
+	"scripts": {
+		"start": "node ."
+	},
   "dependencies": {
-    "algoliasearch": "^3.29.0",
-    "dotenv": "^6.0.0",
-    "firebase": "^5.1.0",
-    "ora": "^2.1.0"
+    "algoliasearch": "^3.30.0",
+    "dotenv": "^6.1.0",
+    "firebase": "^5.5.5",
+    "ora": "^3.0.0"
   }
 }
