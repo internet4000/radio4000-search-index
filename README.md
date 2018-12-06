@@ -1,15 +1,15 @@
 This repository contains everything needed to update
-an Algolia *search index* from the  Firebase database.
+an Algolia *search index* from a Firebase database.
 
 ## Server
 
-There are two node scripts inside `./server/`.
+There are two node scripts inside the `server` folder.
 You can update it in two ways:
 
 - `node server/update-once.js` updates index once
 - `node server/update-live.js` updates once, then watches database for changes and updates accordingly
 
-Before you can run them, create an `./.env` file in with the following:
+Before you can run them, create an `.env` file in the root of this repo with the following:
 
 	ALGOLIA_APP_ID=7FF…
 	ALGOLIA_API_KEY=a87…
@@ -31,4 +31,3 @@ you can change the `serialize` function in `server/utils.js` to fit your own nee
 
 - https://www.algolia.com/doc/tutorials/indexing/3rd-party-service/firebase-algolia/
 - https://www.algolia.com/doc/tutorials/search-ui/autocomplete/auto-complete/?language=javascript#user-interface
-
