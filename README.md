@@ -25,7 +25,7 @@ Before you can run them, create an `.env` file in the root of this repo with the
 ## Using your own database
 
 While this project is optimized for [Radio4000](https://github.com/internet4000/radio4000),
-you can change the `serialize` function in `server/utils.js` to fit your own needs.
+you can make it your own by changing the `serialize` function in `server/serialize.js` to fit your own needs.
 
 ## References
 
