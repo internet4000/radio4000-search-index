@@ -31,3 +31,11 @@ you can make it your own by changing the `serialize` function in `server/seriali
 
 - https://www.algolia.com/doc/tutorials/indexing/3rd-party-service/firebase-algolia/
 - https://www.algolia.com/doc/tutorials/search-ui/autocomplete/auto-complete/?language=javascript#user-interface
+
+## Deployment
+
+You should be able to deploy this to any node host as long as you set the environment variables defined above.
+
+To deploy on now.sh, run:
+
+	now -e ALGOLIA_APP_ID=... -e ALGOLIA_API_KEY=... -e ALGOLIA_INDEX_NAME=... -e FIREBASE_DATABASE_URL=...
