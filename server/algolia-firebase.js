@@ -19,7 +19,7 @@ if (
 }
 
 // Configure Firebase.
-firebase.initializeApp({ databaseURL: FIREBASE_DATABASE_URL })
+firebase.initializeApp({databaseURL: FIREBASE_DATABASE_URL})
 const database = firebase.database()
 
 // Configure Algolia.

@@ -2,26 +2,27 @@ const http = require('http')
 const {index, database} = require('./algolia-firebase')
 const serialize = require('./serialize')
 
-// Stat a server
 const server = http.createServer((req, res) => {
+	res.end('server is running')
+})
+
+server.listen(3000, () => {
+	console.log('started server')
 	// Setup listeners on Firebase database.
 	const channelsRef = database.ref('/channels')
 	channelsRef.on('child_added', addOrUpdateIndexRecord)
 	channelsRef.on('child_changed', addOrUpdateIndexRecord)
 	channelsRef.on('child_removed', deleteIndexRecord)
-
-	res.end('Search indexing is running')
-})
-server.listen(3000, () => {
-	console.log('server is running')
 })
 
 function addOrUpdateIndexRecord(snapshot) {
 	// Get Firebase object
 	let record = snapshot.val()
+
 	// Add id, which serialize expects.
 	record.id = snapshot.key
 	record = serialize(record)
+
 	// Add or update object
 	index
 		.saveObject(record)
@@ -38,6 +39,7 @@ function deleteIndexRecord(snapshot) {
 	// Get Algolia's objectID from the Firebase object key
 	const objectID = snapshot.key
 	const record = snapshot.val()
+
 	// Remove the object from Algolia
 	index
 		.deleteObject(objectID)
