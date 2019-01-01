@@ -1,10 +1,20 @@
+const http = require('http')
 const {index, database} = require('./algolia-firebase')
 const serialize = require('./serialize')
 
-const channelsRef = database.ref('/channels')
-channelsRef.on('child_added', addOrUpdateIndexRecord)
-channelsRef.on('child_changed', addOrUpdateIndexRecord)
-channelsRef.on('child_removed', deleteIndexRecord)
+// Stat a server
+const server = http.createServer((req, res) => {
+	// Setup listeners on Firebase database.
+	const channelsRef = database.ref('/channels')
+	channelsRef.on('child_added', addOrUpdateIndexRecord)
+	channelsRef.on('child_changed', addOrUpdateIndexRecord)
+	channelsRef.on('child_removed', deleteIndexRecord)
+
+	res.end('Search indexing is running')
+})
+server.listen(3000, () => {
+	console.log('server is running')
+})
 
 function addOrUpdateIndexRecord(snapshot) {
 	// Get Firebase object
