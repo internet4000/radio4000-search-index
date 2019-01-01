@@ -39,3 +39,6 @@ You should be able to deploy this to any node host as long as you set the enviro
 To deploy on now.sh, run:
 
 	now -e ALGOLIA_APP_ID=... -e ALGOLIA_API_KEY=... -e ALGOLIA_INDEX_NAME=... -e FIREBASE_DATABASE_URL=...
+
+Note, by default now will deploy your server to multiple regions (bru, sfo). This results in double the events.
+Instead, pass `--regions bru` to only deploy a single region.
