@@ -42,3 +42,9 @@ To deploy on now.sh, run:
 
 Note, by default now will deploy your server to multiple regions (bru, sfo). This results in double the events.
 Instead, pass `--regions bru` to only deploy a single region.
+
+Check the deployment status on https://zeit.co/internet4000/radio4000-search-index --> https://r4searchindex.now.sh/
+
+### Sleep
+
+If server starts sleeping after some time, just visit the URL again.
